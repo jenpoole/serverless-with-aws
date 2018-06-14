@@ -19,3 +19,5 @@ You must have an AWS account for this to work. Don't worry, its free! After you 
 
 ### Dependencies
 * make sure to run `npm i` or `yarn` to install `node_modules`
+
+* busboy for parsing multipart: https://github.com/mscdex/busboy
