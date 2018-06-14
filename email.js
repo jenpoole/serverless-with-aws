@@ -1,34 +1,12 @@
-const Busboy = require('busboy');
+const multipart = require('aws-lambda-multipart-parser');
 
 module.exports.handler = (event, context, callback) => {
   // PARSE MULTIPART DATA FROM REQUEST
   // get content type header
   const contentType = event['headers']['content-type'] || event['headers']['Content-Type']
 
-  // initialize a new busboy instance
-  // constructor config settings: headers of the incoming request
-  const busboy = new Busboy({ headers: {'content-type': contentType} });
-
   // create object containing form fields and values
-  let result = {};
-
-  // busboy.on('field', function(fieldname, val) {
-  //   result[fieldname] = val;
-  //   console.log('Field [' + fieldname + ']: value: ' + inspect(val));
-  // });
-  // busboy.on('finish', function() {
-  //   console.log('Done parsing form!');
-  // });
-
-  // busboy.on('field', (fieldname, value) => {
-  //   result[fieldname] = value;
-  // }).on('finish', () => {
-  //   resolve(result);
-  // }).on('error', err => {
-  //   reject(err);
-  // });
-
-  // busboy.end(event.body);
+  let result = multipart.parse(event, true);
 
   // get origin URL
   let origin = event['headers']['origin'];
