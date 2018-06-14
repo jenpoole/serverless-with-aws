@@ -9,6 +9,27 @@ module.exports.handler = (event, context, callback) => {
   // constructor config settings: headers of the incoming request
   const busboy = new Busboy({ headers: {'content-type': contentType} });
 
+  // create object containing form fields and values
+  let result = {};
+  console.log('busboy: ', busboy);
+
+  // busboy.on('field', function(fieldname, val) {
+  //   console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+  // });
+  // busboy.on('finish', function() {
+  //   console.log('Done parsing form!');
+  // });
+
+  // busboy.on('field', (fieldname, value) => {
+  //   result[fieldname] = value;
+  // }).on('finish', () => {
+  //   resolve(result);
+  // }).on('error', err => {
+  //   reject(err);
+  // });
+
+  // busboy.end(event.body);
+
   // get origin URL
   let origin = event['headers']['origin'];
   let amp_source = event['queryStringParameters']['__amp_source_origin'];
