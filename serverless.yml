@@ -3,8 +3,8 @@ service: serverless
 provider:
   name: aws
   runtime: nodejs8.10
-  profile: femasters
-  region: us-west-1
+  profile: default
+  region: us-east-1
   stage: dev
 
 plugins:
@@ -16,3 +16,9 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
+  email:
+    handler: email.handler
+    events:
+      - http:
+          path: /
+          method: post
